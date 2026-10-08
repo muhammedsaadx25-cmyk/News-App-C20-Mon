@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:news_abbas/core/resources/colors_manager.dart';
+import 'package:news_abbas/providers/home_provider.dart';
+import 'package:provider/provider.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
 
   @override
   Widget build(BuildContext context) {
+    HomeProvider homeProvider = Provider.of<HomeProvider>(context);
     return Drawer(
       backgroundColor: ColorsManager.black,
       child: Column(
@@ -18,7 +21,10 @@ Container(
     child: Text("News App", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: ColorsManager.black),)),
           SizedBox(height: 16,),
           InkWell(
-            onTap: (){},
+            onTap: (){
+              homeProvider.goToCategories();
+              Navigator.pop(context);
+            },
             child: Row(
               children: [
                 Icon(Icons.home_outlined, color: ColorsManager.white,),
