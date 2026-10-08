@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:news_abbas/core/resources/colors_manager.dart';
 
 class CustomDrawer extends StatelessWidget {
-  const CustomDrawer({super.key});
-
+   CustomDrawer({super.key, required this.onGoToHomeClicked});
+void Function() onGoToHomeClicked;
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -18,7 +18,10 @@ Container(
     child: Text("News App", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: ColorsManager.black),)),
           SizedBox(height: 16,),
           InkWell(
-            onTap: (){},
+            onTap: (){
+              print("Hiiii");
+              onGoToHomeClicked();
+            },
             child: Row(
               children: [
                 Icon(Icons.home_outlined, color: ColorsManager.white,),

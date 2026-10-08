@@ -14,6 +14,15 @@ class MainLayout extends StatefulWidget {
 }
 
 class _MainLayoutState extends State<MainLayout> {
+ late  Widget selectedWidget ;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    selectedWidget = CategoriesView(onCategoryItemClicked:onCategoryItemClicked ,);
+
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,9 +35,24 @@ class _MainLayoutState extends State<MainLayout> {
           ),
         ],
       ),
-      drawer: CustomDrawer(),
+      drawer: CustomDrawer(onGoToHomeClicked:onGoToHomeClicked ,),
 
-      body: CategoriesView()
+      body: selectedWidget,
     );
+  }
+
+  void onGoToHomeClicked(){
+    selectedWidget = CategoriesView(onCategoryItemClicked: onCategoryItemClicked);
+  Navigator.pop(context);
+    setState(() {
+
+  });
+  }
+
+  void onCategoryItemClicked(){
+    selectedWidget = SourcesView();
+    setState(() {
+
+    });
   }
 }
