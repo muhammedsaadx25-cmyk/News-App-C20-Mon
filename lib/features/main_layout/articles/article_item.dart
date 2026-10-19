@@ -1,10 +1,11 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:news_abbas/api_service/articles_response/Article.dart';
 import 'package:news_abbas/core/resources/colors_manager.dart';
-import 'package:news_abbas/models/article_model.dart';
 
 class ArticleItem extends StatelessWidget {
    ArticleItem({super.key, required this.article});
-ArticleModel article;
+Article article;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -18,15 +19,20 @@ ArticleModel article;
           children: [
             ClipRRect(
                 borderRadius: BorderRadius.circular(18),
-                child: Image.asset(article.imageUrl, width: double.infinity,fit: BoxFit.fitWidth,)),
+                child: CachedNetworkImage(
+                  imageUrl:article.urlToImage ?? '',
+                  progressIndicatorBuilder: (context, url, downloadProgress) =>
+                      CircularProgressIndicator(value: downloadProgress.progress),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
+                ),),
             SizedBox(height: 10,),
-            Text(article.title,style: TextStyle(color: ColorsManager.white, fontWeight: FontWeight.bold, fontSize: 16),),
+            Text(article.title  ?? '',style: TextStyle(color: ColorsManager.white, fontWeight: FontWeight.bold, fontSize: 16),),
             SizedBox(height: 10,),
             Row(
               children: [
-                Text(article.author, style: TextStyle(color: Colors.green, fontSize: 12,fontWeight: FontWeight.w500 ),),
-                Spacer(),
-                Text(article.publishedAt, style: TextStyle(color: Colors.green, fontSize: 12,fontWeight: FontWeight.w500 ),),
+                Expanded(child: Text(article.author ?? ' ',  style: TextStyle(color: Colors.green, fontSize: 12,fontWeight: FontWeight.w500 ),)),
+
+                Expanded(child: Text(article.publishedAt ?? '',textAlign: TextAlign.end ,style: TextStyle(color: Colors.green, fontSize: 12,fontWeight: FontWeight.w500 ),)),
               ],
             )
 

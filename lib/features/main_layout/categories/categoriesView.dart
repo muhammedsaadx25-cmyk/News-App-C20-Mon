@@ -4,7 +4,7 @@ import 'package:news_abbas/models/category_model.dart';
 
 class CategoriesView extends StatelessWidget {
    CategoriesView({super.key, required this.onCategoryItemClicked});
-void Function() onCategoryItemClicked;
+void Function(CategoryModel) onCategoryItemClicked;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -21,7 +21,7 @@ void Function() onCategoryItemClicked;
             itemBuilder: (_, index) =>
                 InkWell(
                     onTap: (){
-                      onCategoryItemClicked();
+                      onCategoryItemClicked(CategoryModel.categories[index]);
                     },
                     child: CategoryItem(category: CategoryModel.categories[index])),
             itemCount: CategoryModel.categories.length,

@@ -7,11 +7,22 @@ class CategoryModel{
   CategoryModel({required this.id, required this.name, required this.imageURL});
   static List<CategoryModel> categories = [
     CategoryModel(id: "general", name: "General", imageURL: ImageAssets.general),
-    CategoryModel(id: "business", name: "Business", imageURL: ImageAssets.general),
-    CategoryModel(id: "sports", name: "Sports", imageURL: ImageAssets.general),
-    CategoryModel(id: "technology", name: "Technology", imageURL: ImageAssets.general),
-    CategoryModel(id: "entertainment", name: "Entertainment", imageURL: ImageAssets.general),
-    CategoryModel(id: "health", name: "Health", imageURL: ImageAssets.general),
-    CategoryModel(id: "science", name: "Science", imageURL: ImageAssets.general),
+    CategoryModel(id: "business", name: "Business", imageURL: ImageAssets.business),
+    CategoryModel(id: "sports", name: "Sports", imageURL: ImageAssets.sports),
+    CategoryModel(id: "technology", name: "Technology", imageURL: ImageAssets.tech),
+    CategoryModel(id: "entertainment", name: "Entertainment", imageURL: ImageAssets.entertainment),
+    CategoryModel(id: "health", name: "Health", imageURL: ImageAssets.health),
+    CategoryModel(id: "science", name: "Science", imageURL: ImageAssets.science),
   ];
 }
+
+
+/// APIS
+/// Application Programming Interface
+/// https
+/// request
+/// get
+/// post
+/// response
+/// status code
+///

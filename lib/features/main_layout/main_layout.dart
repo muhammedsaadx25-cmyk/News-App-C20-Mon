@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_abbas/core/resources/colors_manager.dart';
 import 'package:news_abbas/features/main_layout/categories/categoriesView.dart';
-import 'package:news_abbas/features/main_layout/categories/category_item.dart';
 import 'package:news_abbas/features/main_layout/drawer/custom_drawer.dart';
 import 'package:news_abbas/features/main_layout/sources_view/sources_view.dart';
 import 'package:news_abbas/models/category_model.dart';
@@ -14,20 +13,25 @@ class MainLayout extends StatefulWidget {
 }
 
 class _MainLayoutState extends State<MainLayout> {
- late  Widget selectedWidget ;
+  late Widget selectedWidget;
+
+  late String title;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    selectedWidget = CategoriesView(onCategoryItemClicked:onCategoryItemClicked ,);
-
+    selectedWidget = CategoriesView(
+      onCategoryItemClicked: onCategoryItemClicked,
+    );
+    title = "Home";
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Home"),
+        title: Text(title),
         actions: [
           IconButton(
             onPressed: () {},
@@ -35,24 +39,24 @@ class _MainLayoutState extends State<MainLayout> {
           ),
         ],
       ),
-      drawer: CustomDrawer(onGoToHomeClicked:onGoToHomeClicked ,),
+      drawer: CustomDrawer(onGoToHomeClicked: onGoToHomeClicked),
 
       body: selectedWidget,
     );
   }
 
-  void onGoToHomeClicked(){
-    selectedWidget = CategoriesView(onCategoryItemClicked: onCategoryItemClicked);
-  Navigator.pop(context);
-    setState(() {
-
-  });
+  void onGoToHomeClicked() {
+    selectedWidget = CategoriesView(
+      onCategoryItemClicked: onCategoryItemClicked,
+    );
+     title = "Home";
+    Navigator.pop(context);
+    setState(() {});
   }
 
-  void onCategoryItemClicked(){
-    selectedWidget = SourcesView();
-    setState(() {
-
-    });
+  void onCategoryItemClicked(CategoryModel category) {
+    selectedWidget = SourcesView(category: category,);
+    title = category.name;
+    setState(() {});
   }
 }
